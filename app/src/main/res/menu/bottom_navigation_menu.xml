@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/news_tab"
+        android:enabled="true"
+        android:icon="@drawable/news"
+        android:title="News"/>
+    <item
+        android:id="@+id/search_tab"
+        android:enabled="true"
+        android:icon="@drawable/search"
+        android:title="Find"/>
+    <item
+        android:id="@+id/imdb_tab"
+        android:enabled="true"
+        android:icon="@drawable/imdb"
+        android:title="IMDb Top"/>
+</menu>
