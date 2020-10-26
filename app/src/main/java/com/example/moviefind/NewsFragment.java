@@ -4,13 +4,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.moviefind.adapters.RecyclerViewAdapter;
+import com.example.moviefind.models.ItemModel;
 import com.example.moviefind.models.NewsModel;
 import com.example.moviefind.models.NewsViewModel;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +26,9 @@ import com.example.moviefind.models.NewsViewModel;
 public class NewsFragment extends Fragment {
 
     private NewsModel newsList;
+    private NewsViewModel newsViewModel;
+    private RecyclerView recyclerView;
+    RecyclerViewAdapter recyclerViewAdapter;
     public NewsFragment() {
         newsList = new NewsModel();
     }
@@ -33,20 +42,23 @@ public class NewsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        NewsViewModel model = new NewsViewModel();
-        model.getNews().observe(this, new Observer<NewsModel>() {
-            @Override
-            public void onChanged(NewsModel news) {
-                newsList = news;
-            }
-        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false);
+        View viewFragment = inflater.inflate(R.layout.fragment_news, container, false);
+        recyclerView = viewFragment.findViewById(R.id.rv_main);
+        newsViewModel = new NewsViewModel();
+        newsViewModel.getNewsMutableLiveData().observe(this, new Observer<NewsModel>() {
+            @Override
+            public void onChanged(NewsModel newsItemList) {
+                recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), (ArrayList<ItemModel>) newsItemList.getItems());
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                recyclerView.setAdapter(recyclerViewAdapter);
+            }
+        });
+        return viewFragment;
     }
 }

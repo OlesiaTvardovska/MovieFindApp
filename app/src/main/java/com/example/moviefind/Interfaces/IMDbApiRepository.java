@@ -15,6 +15,6 @@ public interface IMDbApiRepository {
     })
     @GET("title/get-news")
     Call<NewsModel> getNewsList(
-            @Query("sort") String tconst,
-            @Query("page") Integer limit);
+            @Query("tconst") String tconst,
+            @Query("limit") Integer limit);
 }

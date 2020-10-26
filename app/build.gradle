@@ -4,6 +4,11 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "com.example.moviefind"
         minSdkVersion 16
@@ -30,9 +35,16 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
+    implementation "android.arch.lifecycle:extensions:1.1.1"
     implementation 'com.google.code.gson:gson:2.6.1'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
