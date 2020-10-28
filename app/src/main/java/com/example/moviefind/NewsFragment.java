@@ -9,18 +9,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SimpleItemAnimator;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.moviefind.adapters.RecyclerViewAdapter;
 import com.example.moviefind.models.ItemModel;
+import com.example.moviefind.models.News.News;
 import com.example.moviefind.models.NewsModel;
 import com.example.moviefind.models.NewsViewModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,8 +42,13 @@ public class NewsFragment extends Fragment {
 
     RecyclerViewAdapter recyclerViewAdapter;
 
+
+    private News newsResponse;
+
     public NewsFragment() {
+
         newsList = new NewsModel();
+        newsResponse = new News();
     }
 
     public static NewsFragment newInstance() {
@@ -57,6 +67,12 @@ public class NewsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View viewFragment = inflater.inflate(R.layout.fragment_news, container, false);
+
+        String pattern = "EEEE, MMMM dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        TextView dateView = viewFragment.findViewById(R.id.currentDate);
+        dateView.setText(simpleDateFormat.format(new Date()));
+
         progressBar =  (ProgressBar) viewFragment.findViewById(R.id.progress);
         progressBar.setVisibility(View.VISIBLE);
 
@@ -68,6 +84,7 @@ public class NewsFragment extends Fragment {
         // Set up progress before call
 
         recyclerView = view.findViewById(R.id.rv_main);
+        ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
         newsViewModel = new NewsViewModel();
         newsViewModel.getNewsMutableLiveData().observe(this, new Observer<NewsModel>() {
             @Override

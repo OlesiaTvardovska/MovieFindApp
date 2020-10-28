@@ -13,6 +13,15 @@ public class ItemModel {
     private SourceModel source;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+
+    private boolean expanded;
+    public Boolean getExpanded(){
+        return expanded;
+    }
+    public void setExpanded(boolean expanded){
+        this.expanded = expanded;
+    }
+
     public String getBody() {
         return body;
     }
