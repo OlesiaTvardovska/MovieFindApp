@@ -16,15 +16,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.moviefind.models.ItemModel;
 import com.example.moviefind.R;
+import com.example.moviefind.models.News.Value;
 
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     Activity context;
-    ArrayList<ItemModel> newsItemList;
+    ArrayList<Value> newsItemList;
 
-    public RecyclerViewAdapter(Activity context, ArrayList<ItemModel> newsItemList) {
+    public RecyclerViewAdapter(Activity context, ArrayList<Value> newsItemList) {
         this.context = context;
         this.newsItemList = newsItemList;
     }
@@ -40,14 +41,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        ItemModel newsItem = newsItemList.get(position);
+        Value newsItem = newsItemList.get(position);
         RecyclerViewViewHolder viewHolder= (RecyclerViewViewHolder) holder;
 
-        viewHolder.txtView_title.setText(newsItem.getHead());
-        viewHolder.txtView_description.setText(newsItem.getBody());
+        viewHolder.txtView_title.setText(newsItem.getName());
+        viewHolder.txtView_description.setText(newsItem.getDescription());
 
         //To set image we use extra lib - for performance issues
-        Glide.with(viewHolder.itemView).load(Uri.parse(newsItem.getImage().getUrl())).into(viewHolder.image_news_view);
+        Glide.with(viewHolder.itemView).load(Uri.parse(newsItem.getImage().getThumbnail().getContentUrl())).into(viewHolder.image_news_view);
 
         holder.itemView.setOnClickListener(v -> {
             // Get the current state of the item

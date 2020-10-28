@@ -37,6 +37,8 @@ public class Value {
     @Expose
     private String ampUrl;
 
+    private boolean expanded;
+
     public String getType() {
         return type;
     }
@@ -117,4 +119,10 @@ public class Value {
         this.ampUrl = ampUrl;
     }
 
+    public Boolean getExpanded(){
+        return expanded;
+    }
+    public void setExpanded(boolean expanded){
+        this.expanded = expanded;
+    }
 }

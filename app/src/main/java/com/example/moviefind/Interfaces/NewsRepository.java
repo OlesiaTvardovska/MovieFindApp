@@ -13,11 +13,14 @@ public interface NewsRepository {
     @Headers({
             "x-rapidapi-host: bing-news-search1.p.rapidapi.com",
             "x-rapidapi-key: 61e7afc311msh20a94f13b4a2b9fp1c7680jsnf331b5e14471",
-            "x-bingapis-sdk true",
-            "useQueryString true"
+            "x-bingapis-sdk: true",
+            "useQueryString: true"
     })
     @GET("news")
     Call<News> getNews (
+            @Query("mkt") String market,
+            @Query("safeSearch") String safeSearch,
             @Query("category") String category,
-            @Query("safeSearch") String safeSearch);
+            @Query("textFormat") String textFormat
+            );
 }

@@ -18,8 +18,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.moviefind.adapters.RecyclerViewAdapter;
+import com.example.moviefind.models.BingNewsViewModel;
 import com.example.moviefind.models.ItemModel;
 import com.example.moviefind.models.News.News;
+import com.example.moviefind.models.News.Value;
 import com.example.moviefind.models.NewsModel;
 import com.example.moviefind.models.NewsViewModel;
 
@@ -36,14 +38,13 @@ public class NewsFragment extends Fragment {
 
     private NewsModel newsList;
     private NewsViewModel newsViewModel;
+    private News newsResponse;
+    private BingNewsViewModel bingNewsViewModel;
     private RecyclerView recyclerView;
 
     private ProgressBar progressBar;
 
     RecyclerViewAdapter recyclerViewAdapter;
-
-
-    private News newsResponse;
 
     public NewsFragment() {
 
@@ -85,17 +86,16 @@ public class NewsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.rv_main);
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
-        newsViewModel = new NewsViewModel();
-        newsViewModel.getNewsMutableLiveData().observe(this, new Observer<NewsModel>() {
+        bingNewsViewModel = new BingNewsViewModel();
+        bingNewsViewModel.getNewsMutableLiveData().observe(this, new Observer<News>() {
             @Override
-            public void onChanged(NewsModel newsItemList) {
-                recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), (ArrayList<ItemModel>) newsItemList.getItems());
+            public void onChanged(News newsModel) {
+                recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), (ArrayList<Value>) newsModel.getValue());
                 recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 recyclerView.setAdapter(recyclerViewAdapter);
                 progressBar.setVisibility(View.GONE);
             }
         });
-
 
         super.onViewCreated(view, savedInstanceState);
     }
