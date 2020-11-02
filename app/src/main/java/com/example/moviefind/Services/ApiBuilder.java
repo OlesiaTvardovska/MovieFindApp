@@ -8,17 +8,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiBuilder {
     private static Retrofit retrofit = null;
+    private static Retrofit imdbRetrofit = null;
     public static IMDbApiRepository getClient() {
 
-        if (retrofit==null) {
-            retrofit = new Retrofit.Builder()
+        if (imdbRetrofit==null) {
+            imdbRetrofit = new Retrofit.Builder()
                     .baseUrl("https://rapidapi.p.rapidapi.com/")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
 
         //Creating object for our interface
-        IMDbApiRepository api = retrofit.create(IMDbApiRepository.class);
+        IMDbApiRepository api = imdbRetrofit.create(IMDbApiRepository.class);
         return api;
     }
 

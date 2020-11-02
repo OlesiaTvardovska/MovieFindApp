@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                             openFragment(NewsFragment.newInstance());
                             return true;
                         case R.id.search_tab:
-                            openFragment(NewsFragment.newInstance());
+                            openFragment(MovieSearchFragment.newInstance());
                             return true;
                         case R.id.imdb_tab:
                             openFragment(NewsFragment.newInstance());
