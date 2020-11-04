@@ -26,6 +26,11 @@ public class AutoSuggestAdapter extends ArrayAdapter<String> implements Filterab
         mlistData.clear();
         mlistData.addAll(list);
     }
+
+    public void setObjectsList(List<AutoCompItem> items){
+        suggestionsList.clear();
+        suggestionsList.addAll(items);
+    }
     @Override
     public int getCount() {
         return mlistData.size();
