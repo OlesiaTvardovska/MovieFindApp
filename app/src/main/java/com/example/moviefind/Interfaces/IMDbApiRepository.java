@@ -16,7 +16,7 @@ public interface IMDbApiRepository {
 
     @Headers({
             "x-rapidapi-host: imdb8.p.rapidapi.com",
-            "x-rapidapi-key: 61e7afc311msh20a94f13b4a2b9fp1c7680jsnf331b5e14471"
+            "x-rapidapi-key: ecab589a9dmsh7ca3069808d7725p109f06jsn2bda857dd501"
     })
     @GET("title/get-news")
     Call<NewsModel> getNewsList(
@@ -26,7 +26,7 @@ public interface IMDbApiRepository {
 
     @Headers({
             "x-rapidapi-host: imdb8.p.rapidapi.com",
-            "x-rapidapi-key: f1faf8fe6cmsh55a247daa37e779p1d2cc0jsnd043e0b6ecd6",
+            "x-rapidapi-key: ecab589a9dmsh7ca3069808d7725p109f06jsn2bda857dd501",
             "useQueryString: true"
     })
     @GET("title/auto-complete")
@@ -34,7 +34,7 @@ public interface IMDbApiRepository {
 
 
     @Headers({
-            "x-rapidapi-key: f1faf8fe6cmsh55a247daa37e779p1d2cc0jsnd043e0b6ecd6",
+            "x-rapidapi-key: ecab589a9dmsh7ca3069808d7725p109f06jsn2bda857dd501",
             "x-rapidapi-host: imdb8.p.rapidapi.com",
             "useQueryString: true"
     })
@@ -42,7 +42,7 @@ public interface IMDbApiRepository {
     Call<Movie>  getMovieDetails(@Query("tconst") String tconst);
 
     @Headers({
-            "x-rapidapi-key: f1faf8fe6cmsh55a247daa37e779p1d2cc0jsnd043e0b6ecd6",
+            "x-rapidapi-key: ecab589a9dmsh7ca3069808d7725p109f06jsn2bda857dd501",
             "x-rapidapi-host: imdb8.p.rapidapi.com",
             "useQueryString: true"
     })

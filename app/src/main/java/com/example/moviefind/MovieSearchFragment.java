@@ -65,7 +65,6 @@ public class MovieSearchFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TopImdbViewModel model = new TopImdbViewModel();
         // set view binding
         final AppCompatAutoCompleteTextView autoCompleteTextView =
                  view.findViewById(R.id.auto_complete_edit_text);

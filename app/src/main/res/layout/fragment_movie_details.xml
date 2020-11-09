@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MovieDetailsFragment">
     <data>
         <variable
             name="viewmodel"
             type="com.example.moviefind.models.MovieViewModel"/>
     </data>
-
-    <RelativeLayout
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MovieSearchFragment">
-
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
-            android:id="@+id/auto_complete_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_margin="10dp"
-            android:inputType="text"
-            android:maxLines="1" />
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/movie_details_layout"
             android:layout_width="fill_parent"
@@ -29,12 +18,17 @@
             android:orientation="vertical"
             android:visibility="@{viewmodel.movie != null ? 0 : 2}">
 
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" />
+
             <ImageView
-                android:id="@+id/image_view"
+                android:id="@+id/movie_details_image"
                 android:layout_width="fill_parent"
-                android:layout_marginTop="50dp"
-                android:layout_height="300dp"
-                android:scaleType="centerCrop"
+                android:layout_height="500dp"
+                android:scaleType="matrix"
                 android:adjustViewBounds="true"/>
 
             <TextView
@@ -45,7 +39,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:text="@{viewmodel.movie.title}"
-               />
+                />
 
             <TextView
                 android:id="@+id/txtView_type"
@@ -56,6 +50,6 @@
                 android:text="@{viewmodel.movie.titleType}"
                 />
         </LinearLayout>
+    </ScrollView>
 
-    </RelativeLayout>
 </layout>

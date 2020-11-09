@@ -1,15 +1,21 @@
 package com.example.moviefind.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.ObservableField;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.moviefind.MovieDetailsFragment;
 import com.example.moviefind.R;
 import com.example.moviefind.models.MovieDetails.Movie;
 import com.example.moviefind.models.MovieViewModel;
@@ -41,19 +47,26 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         RecyclerViewViewHolder viewHolder= (RecyclerViewViewHolder) holder;
 
         viewHolder.txtView_title.setText(movieItem.movie.get().getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), "Clicked on position: "
+                        + movieItem.movie.get().getId() , Toast.LENGTH_SHORT).show();
 
-/*        holder.itemView.setOnClickListener(v -> {
-            // Get the current state of the item
-            boolean expanded = newsItem.getExpanded();
-            // Change the state
-            newsItem.setExpanded(!expanded);
-            viewHolder.txtView_description.setVisibility(newsItem.getExpanded() == true ? View.VISIBLE
-                    : View.GONE);
-            // Notify the adapter that item has changed
-            notifyItemChanged(position);
-        });*/
+                AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                String selectedMovieId = movieItem.movie.get().getId()
+                                        .replace("/", "")
+                                        .replace("title", "");
+                Fragment myFragment = MovieDetailsFragment.newInstance(selectedMovieId);
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.fragment_container, myFragment)
+                        .addToBackStack(null)
+                        .commit();
+
+            }
+        });
     }
-
     @Override
     public int getItemCount() {
         return moviesList.size();
@@ -66,5 +79,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             super(itemView);
             txtView_title = itemView.findViewById(R.id.movie_title);
         }
+
     }
 }
