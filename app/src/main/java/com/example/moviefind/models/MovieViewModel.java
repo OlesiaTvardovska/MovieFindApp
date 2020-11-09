@@ -19,13 +19,17 @@ public class MovieViewModel extends ViewModel {
     public ObservableField<Movie> movie = new ObservableField<>();
     private ImageView imageView;
 
+    public MovieViewModel(){}
     public MovieViewModel(ImageView imageView){
         this.imageView = imageView;
     }
 
     public void setMovie(Movie movieM){
+        if(imageView != null){
+            loadImage(imageView, Uri.parse(movieM.getImage().getUrl()));
+        }
         movie.set(movieM);
-        loadImage(imageView, Uri.parse(movieM.getImage().getUrl()));
+
     }
 
     @BindingAdapter("profileImage")
@@ -36,5 +40,4 @@ public class MovieViewModel extends ViewModel {
                     .into(view);
         }
     }
-
 }

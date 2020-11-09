@@ -43,8 +43,18 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_size_medium"
                 android:textStyle="bold"
-                android:text="@{viewmodel.movie.title}"
+                android:gravity="center"
+                android:text="@{viewmodel.movie.titleType}"
                />
+
+            <TextView
+                android:id="@+id/txtView_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/font_size_medium"
+                android:gravity="center"
+                android:text="@{viewmodel.movie.titleType}"
+                />
         </LinearLayout>
 
     </RelativeLayout>

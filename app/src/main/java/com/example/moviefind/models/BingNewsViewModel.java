@@ -13,14 +13,12 @@ import retrofit2.Response;
 
 public class BingNewsViewModel extends ViewModel {
     public MutableLiveData<News> news = new MutableLiveData<News>();
-    News newsModel;
     private NewsRepository newsRepository;
 
     public BingNewsViewModel(){
         newsRepository = ApiBuilder.getNewsApiClient();
-        news = new MutableLiveData<News>();
+        news = new MutableLiveData<>();
 
-        //request to imdb api
         init();
     }
 

@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(navigationItemSelectedListener);
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                             openFragment(MovieSearchFragment.newInstance());
                             return true;
                         case R.id.imdb_tab:
-                            openFragment(NewsFragment.newInstance());
+                            openFragment(TopImdbFragment.newInstance());
                             return true;
                     }
                     return false;

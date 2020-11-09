@@ -35,22 +35,12 @@ import java.util.Date;
  * create an instance of this fragment.
  */
 public class NewsFragment extends Fragment {
-
-    private NewsModel newsList;
-    private NewsViewModel newsViewModel;
-    private News newsResponse;
     private BingNewsViewModel bingNewsViewModel;
     private RecyclerView recyclerView;
 
     private ProgressBar progressBar;
 
     RecyclerViewAdapter recyclerViewAdapter;
-
-    public NewsFragment() {
-
-        newsList = new NewsModel();
-        newsResponse = new News();
-    }
 
     public static NewsFragment newInstance() {
         NewsFragment fragment = new NewsFragment();
@@ -82,7 +72,6 @@ public class NewsFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        // Set up progress before call
 
         recyclerView = view.findViewById(R.id.rv_main);
         ((SimpleItemAnimator) recyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
