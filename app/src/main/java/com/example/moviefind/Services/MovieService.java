@@ -62,7 +62,10 @@ public class MovieService {
             @Override
             public void onResponse(Call<Movie> call,
                                    Response<Movie> response) {
-                movieModel.setMovie(response.body());
+                if(response.isSuccessful()){
+                    movieModel.setMovie(response.body());
+                }
+
             }
 
             @Override

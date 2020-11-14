@@ -27,7 +27,7 @@
             <ImageView
                 android:id="@+id/movie_details_image"
                 android:layout_width="fill_parent"
-                android:layout_height="500dp"
+                android:layout_height="550dp"
                 android:scaleType="matrix"
                 android:adjustViewBounds="true"/>
 
@@ -38,6 +38,7 @@
                 android:textSize="@dimen/font_size_medium"
                 android:textStyle="bold"
                 android:gravity="center"
+                android:padding="20dp"
                 android:text="@{viewmodel.movie.title}"
                 />
 
@@ -46,6 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_size_medium"
+                android:padding="20dp"
                 android:gravity="center"
                 android:text="@{viewmodel.movie.titleType}"
                 />
